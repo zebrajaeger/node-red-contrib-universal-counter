@@ -1,0 +1,59 @@
+<script type="text/html" data-template-name="universal-counter" data-help-name="universal-counter">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Node name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-range"><i class="fa fa-list"></i> Range</label>
+        <input type="text" id="node-input-range" placeholder="e.g. 1..10,15,20">
+    </div>
+    <div class="form-row">
+        <label for="node-input-initialValue"><i class="fa fa-bolt"></i> Initial Value</label>
+        <input type="number" id="node-input-initialValue" placeholder="e.g. 5">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('universal-counter', {
+        category: 'function',
+        color: '#a6bbcf',
+        icon: 'counter.png',
+        label: function() {
+             return this.name || 'universal counter';
+        },
+        paletteLabel: "univ. counter",
+        defaults: {
+            name: {value: ''},
+            range: {value: ''},
+            initialValue: {value: ''}
+        },
+        inputs: 1,
+        outputs: 1,
+        inputLabels: 'Input topic',
+        outputLabels: 'Current value',
+        labelStyle: function() {
+            return this.name ? 'node_label_italic' : '';
+        },
+        oneditprepare: function() {
+            // Placeholder for any on-edit setup needed
+        }
+    });
+</script>
+
+<script type="text/html" data-help-name="universal-counter">
+    <p>This node maintains a counter within a specified range and can increment or decrement based on the incoming message topics.</p>
+    <h3>Configuration</h3>
+    <ul>
+        <li><b>Name</b>: Optional name to identify the node.</li>
+        <li><b>Range</b>: Specify a range of values (e.g., <code>1..10,15,20</code>).</li>
+        <li><b>Initial Value</b>: Starting value within the range.</li>
+    </ul>
+    <h3>Topics</h3>
+    <ul>
+        <li><b>reset</b>: Resets the counter to the starting position.</li>
+        <li><b>setValue</b>: Sets the counter to a specific value within the range.</li>
+        <li><b>setIndex</b>: Directly sets the counter by index within the range.</li>
+        <li><b>increment</b>: Increments by 1 or by a specified amount.</li>
+        <li><b>decrement</b>: Decrements by 1 or by a specified amount.</li>
+    </ul>
+</script>

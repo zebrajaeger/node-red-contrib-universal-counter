@@ -1,0 +1,11 @@
+{
+    "watch": [
+        "nodes",
+        "settings.js"
+    ],
+    "ext": "js,json,html",
+    "exec": "node-red -u . --port 8887",
+    "ignore": [
+        "**/node_modules/**"
+    ]
+}
